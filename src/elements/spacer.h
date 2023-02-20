@@ -1,3 +1,6 @@
+#ifndef SPACER_H
+#define SPACER_H
+
 #include "element.h"
 
 using namespace std;
@@ -34,6 +37,4 @@ class Spacer : public WindowElement {
     void paint(int x, int y, int width, int height) override;
 };
 
-void Spacer::paint(int x, int y, int width, int height) {
-    // WindowElement::paint(x, y, width, height);
-}
+#endif
