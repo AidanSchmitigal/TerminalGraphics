@@ -3,8 +3,6 @@
 
 #include "element.h"
 
-using namespace std;
-
 /**
  * A Button is a WindowElement that can be clicked. It has a setAction method that can be used
  * to specify a function that should be called when the Button is clicked.
@@ -23,7 +21,7 @@ class Button : public WindowElement {
      * @param widthPercent The percentage of the parent width that the Button should take up.
      */
     Button(
-        string title, function<void()> action = []() {});
+        std::string title, std::function<void()> action = []() {});
 
     /**
      * A Button is a WindowElement that can be clicked. It has a setAction method that can be used
@@ -34,19 +32,19 @@ class Button : public WindowElement {
      * @param action The function that will be executed when the button is clicked.
      */
     Button(
-        string title, float widthPercent, function<void()> action = []() {});
+        std::string title, float widthPercent, std::function<void()> action = []() {});
 
     /**
      * Sets the title of the Button.
      * @param title The new title of the button.
      */
-    void setTitle(string title);
+    void setTitle(std::string title);
 
     /**
      * Sets the action to be performed when the button is clicked.
      * @param action The function that will be executed when the button is clicked.
      */
-    void setAction(function<void()> action);
+    void setAction(std::function<void()> action);
 
     /**
      * Paints the button in the console window.
@@ -69,23 +67,24 @@ class Button : public WindowElement {
     void click();
 
    private:
-    string title;
-    function<void()> action;
+    std::string title;
+    std::function<void()> action;
 };
+//;;split
 
-Button::Button(string title, function<void()> action) : WindowElement((int)title.length() + 2, 3), title(title), action(action) {
+Button::Button(std::string title, std::function<void()> action) : WindowElement((int)title.length() + 2, 3), title(title), action(action) {
     this->selectable = true;
 }
 
-Button::Button(string title, float widthPercent, function<void()> action) : WindowElement(widthPercent, 3), title(title), action(action) {
+Button::Button(std::string title, float widthPercent, std::function<void()> action) : WindowElement(widthPercent, 3), title(title), action(action) {
     this->selectable = true;
 }
 
-void Button::setTitle(string title) {
+void Button::setTitle(std::string title) {
     this->title = title;
 }
 
-void Button::setAction(function<void()> action) {
+void Button::setAction(std::function<void()> action) {
     this->action = action;
 }
 

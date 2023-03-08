@@ -3,8 +3,6 @@
 
 #include "element.h"
 
-using namespace std;
-
 /**
  * Constructor for TextField object
  * @param title the title of the text input
@@ -19,25 +17,25 @@ class TextField : public WindowElement {
      * @param templateText the template text to be shown if input is empty
      * @param widthPercent the percentage of the screen's width the text input should take up, defaults to 0.6
      */
-    TextField(string title, string templateText, float widthPercent = 0.9);
+    TextField(std::string title, std::string templateText, float widthPercent = 0.9);
 
     /**
      * Sets the title of the text input
      * @param title the new title to be set
      */
-    void setTitle(string title);
+    void setTitle(std::string title);
 
     /**
      * Sets the text input's current text
      * @param text the new text to be set
      */
-    void setText(vector<string> text);
+    void setText(std::vector<std::string> text);
 
     /**
      * Gets the text input's current text
      * @return the text input's current text
      */
-    vector<string> getText();
+    std::vector<std::string> getText();
 
     /**
      * Sets whether or not the text input should show line numbers
@@ -67,42 +65,43 @@ class TextField : public WindowElement {
      */
     void arrowKeyEvent(ArrowKey key, WindowElement* element) override;
 
-    void setHeader(vector<string> header);
+    void setHeader(std::vector<std::string> header);
 
-    void setFooter(vector<string> footer);
+    void setFooter(std::vector<std::string> footer);
 
    private:
-    string title;
-    vector<string> text = vector<string>(1, "");
-    vector<string> header = vector<string>();
-    vector<string> footer = vector<string>();
-    pair<int, int> selectedText = pair<int, int>(0, 0);
-    string templateText;
+    std::string title;
+    std::vector<std::string> text = std::vector<std::string>(1, "");
+    std::vector<std::string> header = std::vector<std::string>();
+    std::vector<std::string> footer = std::vector<std::string>();
+    std::pair<int, int> selectedText = std::pair<int, int>(0, 0);
+    std::string templateText;
     bool lineNumbers = false;
 };
+//;;split
 
-TextField::TextField(string title, string templateText, float widthPercent) : title(title), templateText(templateText), WindowElement(widthPercent, 0.9) {
+TextField::TextField(std::string title, std::string templateText, float widthPercent) : title(title), templateText(templateText), WindowElement(widthPercent, 0.9) {
     this->selectable = true;
 }
 
-void TextField::setTitle(string title) {
+void TextField::setTitle(std::string title) {
     this->title = title;
 }
-void TextField::setText(vector<string> text) {
+void TextField::setText(std::vector<std::string> text) {
     this->text = text;
 }
-vector<string> TextField::getText() {
+std::vector<std::string> TextField::getText() {
     return text;
 }
 void TextField::setLineNumbers(bool lineNumbers) {
     this->lineNumbers = lineNumbers;
 }
 
-void TextField::setHeader(vector<string> header) {
+void TextField::setHeader(std::vector<std::string> header) {
     this->header = header;
 }
 
-void TextField::setFooter(vector<string> footer) {
+void TextField::setFooter(std::vector<std::string> footer) {
     this->footer = footer;
 }
 
@@ -126,7 +125,7 @@ void TextField::paint(int x, int y, int width, int height) {
         }
         for (int i = 0; i < text.size(); i++) {
             if (lineNumbers) {
-                string number = to_string(i + 1);
+                std::string number = std::to_string(i + 1);
                 number.resize(numberOffset - 2, ' ');
                 drawText(number + "|", x + 1, y + 1 + i + header.size(), GRAY);
             }

@@ -2,8 +2,6 @@
 
 #include "element.h"
 
-using namespace std;
-
 /**
  * Constructs an icon object with a given path and size.
  *
@@ -20,14 +18,14 @@ class Icon : public WindowElement {
      * @param width The width of the icon to be constructed.
      * @param height The height of the icon to be constructed.
      */
-    Icon(string path, int width, int height);
+    Icon(std::string path, int width, int height);
 
     /**
      * Sets the icon of the icon object.
      *
      * @param path The path of the icon to be set.
      */
-    void setIcon(string path);
+    void setIcon(std::string path);
 
     /**
      * Paints the icon object at the given coordinates.
@@ -40,12 +38,13 @@ class Icon : public WindowElement {
     void paint(int x, int y, int width, int height) override;
 
    private:
-    string path = "";
+    std::string path = "";
 };
+//;;split
 
-Icon::Icon(string path, int width, int height) : path(path), WindowElement(width, height) {}
+Icon::Icon(std::string path, int width, int height) : path(path), WindowElement(width, height) {}
 
-void Icon::setIcon(string path) {
+void Icon::setIcon(std::string path) {
     this->path = path;
 }
 
@@ -53,8 +52,8 @@ void Icon::paint(int x, int y, int width, int height) {
     WindowElement::paint(x, y, width, height);
     if (hidden) return;
 
-    ifstream file(path);
-    string line;
+    std::ifstream file(path);
+    std::string line;
     int lineNum = 0;
     while (getline(file, line)) {
         drawText(line, x, y + lineNum);

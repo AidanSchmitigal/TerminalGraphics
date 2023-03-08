@@ -2,8 +2,6 @@
 
 #include "layout.h"
 
-using namespace std;
-
 /**
  * @param widths an array of integers representing the width of each element in the grid
  */
@@ -21,23 +19,24 @@ class SquareGridLayout : public Layout {
      * @param height the height of the grid
      * @param elements a vector of pointers to the WindowElements in the grid
      */
-    void paint(int x, int y, int width, int height, vector<WindowElement*> elements) override;
+    void paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) override;
     /**
      * Selects the next WindowElement in the layout
      * @param selectedElement the currently selected WindowElement
      * @param elements a vector of WindowElement objects to be included in the layout
      * @param direction the direction to select the next WindowElement in
      */
-    bool selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) override;
+    bool selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) override;
 
    private:
     int numColumns;
     int scrollOffset = 0;
 };
+//;;split
 
 SquareGridLayout::SquareGridLayout(int numColumns) : numColumns(numColumns) {}
 
-void SquareGridLayout::paint(int x, int y, int width, int height, vector<WindowElement*> elements) {
+void SquareGridLayout::paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) {
     int columnWidth = width / numColumns;
     int maxNumberOfRows = height / columnWidth / 2 + 1;
     int xOffset = 0;
@@ -46,7 +45,7 @@ void SquareGridLayout::paint(int x, int y, int width, int height, vector<WindowE
     int numNonHidden = 0;
     for (int i = 0; i < elements.size(); i++)
         if (!elements[i]->hidden) numNonHidden++;
-    int numElements = min(numNonHidden, maxNumberOfRows * numColumns);
+    int numElements = std::min(numNonHidden, maxNumberOfRows * numColumns);
 
     for (int i = 0; i < numElements; i++) {
         if (elements[i]->hidden) continue;
@@ -60,7 +59,7 @@ void SquareGridLayout::paint(int x, int y, int width, int height, vector<WindowE
     }
 }
 
-bool SquareGridLayout::selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) {
+bool SquareGridLayout::selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) {
     selectedElement->setState(State::ERROR);
     // Find the index of the selected element in the vector
     int selectedIndex = -1;
@@ -97,7 +96,7 @@ bool SquareGridLayout::selectNext(WindowElement* selectedElement, vector<WindowE
     if (nextIndex >= 0 && nextIndex < elements.size() && elements[nextIndex]->select()) {
         // if the next element is not visible, scroll the grid
         int nextIndexRow = nextIndex / numColumns;
-        scrollOffset = max(0, nextIndexRow - 1);
+        scrollOffset = std::max(0, nextIndexRow - 1);
         return true;
     }
 

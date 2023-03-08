@@ -1,7 +1,5 @@
 #include "../elements/element.h"
 
-using namespace std;
-
 /**
  * A base class for creating different Layout objects
  */
@@ -15,7 +13,7 @@ class Layout {
      * @param height the height of the layout on the screen
      * @param elements a vector of WindowElement objects to be included in the layout
      */
-    virtual void paint(int x, int y, int width, int height, vector<WindowElement*> elements) = 0;
+    virtual void paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) = 0;
 
     /**
      * Selects the next WindowElement in the layout
@@ -24,7 +22,7 @@ class Layout {
      * @param direction the direction to select the next WindowElement in
      * @return true if the next element was selected, false if the selected element was not changed
      */
-    virtual bool selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) = 0;
+    virtual bool selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) = 0;
 
-    virtual ~Layout(){};
+    virtual ~Layout() {};
 };

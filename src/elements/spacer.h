@@ -1,7 +1,5 @@
 #include "element.h"
 
-using namespace std;
-
 /**
  * This class extends WindowElement class.
  * It creates Spacer objects with given height.
@@ -33,6 +31,7 @@ class Spacer : public WindowElement {
      */
     void paint(int x, int y, int width, int height) override;
 };
+//;;split
 
 void Spacer::paint(int x, int y, int width, int height) {
     // WindowElement::paint(x, y, width, height);

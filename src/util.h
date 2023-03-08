@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 enum Color {
     RESET = 0,
     BOLD = 1,
@@ -65,7 +63,7 @@ ArrowKey getArrowKey(int key);
  * @param color The color for which to get the color code
  * @return The color code of the given color
  */
-string getColorCode(int color);
+std::string getColorCode(int color);
 
 /**
  * Draws text on the console at the given position with the given color
@@ -74,7 +72,7 @@ string getColorCode(int color);
  * @param y The Y coordinate of the position at which to draw the text
  * @param color The color of the text to be drawn on the console
  */
-void drawText(string text, int x, int y, int color = LIGHT_WHITE);
+void drawText(std::string text, int x, int y, int color = LIGHT_WHITE);
 
 /**
  * Draws text on the console at the given position with the given color
@@ -82,7 +80,7 @@ void drawText(string text, int x, int y, int color = LIGHT_WHITE);
  * @param x The X coordinate of the position at which to draw the text
  * @param y The Y coordinate of the position at which to draw the text
  */
-void drawRawText(string text, int x, int y);
+void drawRawText(std::string text, int x, int y);
 
 /**
  * Clears the area of the console at the given position
@@ -108,7 +106,7 @@ void fillArea(int x, int y, int width, int height, int color = LIGHT_WHITE);
  * @param text The string to be converted to capital case
  * @return The given string converted to capital case
  */
-string toCapitalCase(string text);
+std::string toCapitalCase(std::string text);
 
 /**
  * Sets the console cursor position to the given position
@@ -146,7 +144,7 @@ void drawBox(int x, int y, int width, int height, int color = LIGHT_WHITE);
  * @param title The title of the box to be drawn on the console
  * @param color The color of the box to be drawn on the console
  */
-void drawBox(int x, int y, int width, int height, string title, int color = LIGHT_WHITE);
+void drawBox(int x, int y, int width, int height, std::string title, int color = LIGHT_WHITE);
 
 /**
  * Draws an image on the console at the given position with the given width and height
@@ -156,14 +154,14 @@ void drawBox(int x, int y, int width, int height, string title, int color = LIGH
  * @param width The width of the image to be drawn on the console
  * @param height The height of the image to be drawn on the console
  */
-void drawImage(string path, int x, int y, int width, int height);
+void drawImage(std::string path, int x, int y, int width, int height);
 
 /**
  * Reads an image from the given file path
  * @param path The path of the image file to be read
  * @return A 2D vector representing the image read from the file
  */
-vector<vector<int>> readImage(string path);
+std::vector<std::vector<int>> readImage(std::string path);
 
 /**
  * Scales the given image to the given width and height
@@ -172,9 +170,9 @@ vector<vector<int>> readImage(string path);
  * @param height The height to which to scale the image
  * @return The given image scaled to the given width and height as a 2D vector
  */
-vector<vector<int>> scaleImage(vector<vector<int>> image, int width, int height);
+std::vector<std::vector<int>> scaleImage(std::vector<std::vector<int>> image, int width, int height);
 
-//::
+//;;split
 
 ArrowKey getArrowKey(int key) {
     switch (key) {
@@ -191,24 +189,24 @@ ArrowKey getArrowKey(int key) {
     }
 }
 
-string getColorCode(int color) {
-    return "\033[" + to_string(color) + "m";
+std::string getColorCode(int color) {
+    return "\033[" + std::to_string(color) + "m";
 }
 
-void drawText(string text, int x, int y, int color) {
+void drawText(std::string text, int x, int y, int color) {
     if (x < 0 || y < 0) {
         return;
     }
     setCursorPosition(x, y);
-    cout << getColorCode(color) << text << "\033[0m";
+    std::cout << getColorCode(color) << text << "\033[0m";
 }
 
-void drawRawText(string text, int x, int y) {
+void drawRawText(std::string text, int x, int y) {
     if (x < 0 || y < 0) {
         return;
     }
     setCursorPosition(x, y);
-    cout << text;
+    std::cout << text;
 }
 
 void clearArea(int x, int y, int width, int height) {
@@ -218,7 +216,7 @@ void clearArea(int x, int y, int width, int height) {
     for (int i = 0; i < height; i++) {
         setCursorPosition(x, y + i);
         for (int j = 0; j < width; j++) {
-            cout << " ";
+            std::cout << " ";
         }
     }
 }
@@ -230,13 +228,13 @@ void fillArea(int x, int y, int width, int height, int color) {
     for (int i = 0; i < height; i++) {
         setCursorPosition(x, y + i);
         for (int j = 0; j < width; j++) {
-            cout << getColorCode(color) << "█";
+            std::cout << getColorCode(color) << "█";
         }
     }
 }
 
-string toCapitalCase(string text) {
-    string result = "";
+std::string toCapitalCase(std::string text) {
+    std::string result = "";
     bool isSpace = true;
     for (int i = 0; i < text.length(); i++) {
         if (isSpace) {
@@ -255,15 +253,15 @@ string toCapitalCase(string text) {
 }
 
 void setCursorPosition(int x, int y) {
-    cout << "\033[" << (y + 1) << ";" << (x + 1) << "H";
+    std::cout << "\033[" << (y + 1) << ";" << (x + 1) << "H";
 }
 
 void showCursor() {
-    cout << "\033[?25h";
+    std::cout << "\033[?25h";
 }
 
 void hideCursor() {
-    cout << "\033[?25l";
+    std::cout << "\033[?25l";
 }
 
 void drawBox(int x, int y, int width, int height, int color) {
@@ -283,7 +281,7 @@ void drawBox(int x, int y, int width, int height, int color) {
     }
 
     // Draw top & bottom border
-    string border = "";
+    std::string border = "";
     for (int i = 1; i < width - 1; i++) {
         border += "─";
     }
@@ -291,7 +289,7 @@ void drawBox(int x, int y, int width, int height, int color) {
     drawText(border, x + 1, y + height - 1, color);
 }
 
-void drawBox(int x, int y, int width, int height, string title, int color) {
+void drawBox(int x, int y, int width, int height, std::string title, int color) {
     if (x < 0 || y < 0) {
         return;
     }
@@ -299,18 +297,18 @@ void drawBox(int x, int y, int width, int height, string title, int color) {
     drawText("┤" + title + "├", x + 1, y, color);
 }
 
-void drawImage(string path, int x, int y, int width, int height) {
+void drawImage(std::string path, int x, int y, int width, int height) {
     if (x < 0 || y < 0) {
         return;
     }
-    vector<vector<int>> image = readImage(path);
-    vector<vector<int>> scaledImage = scaleImage(image, width, height);
+    std::vector<std::vector<int>> image = readImage(path);
+    std::vector<std::vector<int>> scaledImage = scaleImage(image, width, height);
     for (int j = 0; j < height; j++) {
         for (int i = 0; i < width; i++) {
             int colorCode = scaledImage[j][i];
             // Check if outside color range
             if (colorCode < 0 || colorCode > 7) {
-                string colorToText = to_string(colorCode);
+                std::string colorToText = std::to_string(colorCode);
                 drawText(colorToText, x + i, y + j, 0);
             } else {
                 drawText("█", x + i, y + j, colorCode + 30);
@@ -319,12 +317,12 @@ void drawImage(string path, int x, int y, int width, int height) {
     }
 }
 
-vector<vector<int>> readImage(string path) {
-    vector<vector<int>> image;
-    ifstream file(path);
-    string line;
+std::vector<std::vector<int>> readImage(std::string path) {
+    std::vector<std::vector<int>> image;
+    std::ifstream file(path);
+    std::string line;
     while (getline(file, line)) {
-        vector<int> row;
+        std::vector<int> row;
         for (char c : line) {
             row.push_back(c - '0');
         }
@@ -333,10 +331,10 @@ vector<vector<int>> readImage(string path) {
     return image;
 }
 
-vector<vector<int>> scaleImage(vector<vector<int>> image, int width, int height) {
+std::vector<std::vector<int>> scaleImage(std::vector<std::vector<int>> image, int width, int height) {
     int imageWidth = image[0].size();
     int imageHeight = image.size();
-    vector<vector<int>> scaledImage(height, vector<int>(width));
+    std::vector<std::vector<int>> scaledImage(height, std::vector<int>(width));
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             int imageX = (x * imageWidth) / width;

@@ -1,7 +1,9 @@
 # TerminalGraphics
+
 This is a graphics library in C++, designed to provide an easy-to-use interface for creating and manipulating graphical elements.
 
 ### File Structure
+
 ```
 include/
     include.h
@@ -24,6 +26,7 @@ src/
     lock.h
 Makefile
 ```
+
 include/
 This directory contains the header file include.h, which includes all the necessary headers for using the library.
 
@@ -39,4 +42,9 @@ This directory contains the layout headers, which are used to arrange graphical 
 - bookelement.h: This file contains the declaration of the BookElement class, which represents an element that can be added to a layout.
 
 ### Makefile
+
 The Makefile is used to build the library. Simply run make to build the library.
+
+`make split` generates the all the buildable files.
+
+`make genImport` makes the single include file

@@ -2,8 +2,6 @@
 
 #include "layout.h"
 
-using namespace std;
-
 /**
  * A class that represents a grid layout.
  */
@@ -61,6 +59,7 @@ class GridLayout : public Layout {
     int* widths;   // an array of the column widths
     int* heights;  // an array of the row heights
 };
+//;;split
 
 GridLayout::GridLayout(int widths[], int heights[]) : widths(widths), heights(heights) {}
 

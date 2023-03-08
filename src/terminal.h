@@ -13,8 +13,6 @@
 #include "elements/group.h"
 #include "util.h"
 
-using namespace std;
-
 /**
  * Constructor method for Terminal class.
  * Initializes the Terminal.
@@ -117,10 +115,10 @@ void Terminal::initTerminal() {
 // Checking the size of the terminal window and if it is too small, it will print an error message and exit the program.
 void Terminal::checkScreenSize() {
     if (size.ws_col < minWidth || size.ws_row < minHeight) {
-        cout << getColorCode(LIGHT_CYAN) << "🚨 Screen size is too small." << endl;
-        cout << "Please resize your Window to at least" << minWidth << "x" << minHeight << " characters." << endl;
-        cout << "Your terminal is currently " << size.ws_col << "x" << size.ws_row << " characters." << endl;
-        cout << getColorCode(RESET);
+        std::cout << getColorCode(LIGHT_CYAN) << "🚨 Screen size is too small." << std::endl;
+        std::cout << "Please resize your Window to at least" << minWidth << "x" << minHeight << " characters." << std::endl;
+        std::cout << "Your terminal is currently " << size.ws_col << "x" << size.ws_row << " characters." << std::endl;
+        std::cout << getColorCode(RESET);
         std::exit(1);
     }
 }
@@ -128,9 +126,9 @@ void Terminal::checkScreenSize() {
 void Terminal::checkInputs() {
     rootWindow->select();
     rootWindow->paint(0, 0, size.ws_col, size.ws_row);
-    cout.flush();
+    std::cout.flush();
 
-    string input;
+    std::string input;
     while (!exitFlag) {
         int c = getchar();
 
@@ -148,7 +146,7 @@ void Terminal::checkInputs() {
         }
 
         rootWindow->paint(0, 0, size.ws_col, size.ws_row);
-        cout.flush();
+        std::cout.flush();
     }
     exit();
 }
@@ -180,9 +178,9 @@ void Terminal::exit() {
     //
     //     sleep(1);
     // }
-    cout << "\033[2J\033[1;1H"
-         //  << "\033[1J"
-         << "Goodbye. 👋" << endl;
+    std::cout << "\033[2J\033[1;1H"
+              //  << "\033[1J"
+              << "Goodbye. 👋" << std::endl;
 }
 
 void Terminal::addElement(WindowElement* element) {

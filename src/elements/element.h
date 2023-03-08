@@ -2,8 +2,6 @@
 
 #include "../util.h"
 
-using namespace std;
-
 /**
  * Constructs a new window element with a given width and height.
  * @param width the width of the window
@@ -61,7 +59,7 @@ class WindowElement {
      * @param parentHeight the parent's height
      * @return a tuple of width and height
      */
-    virtual tuple<int, int> getFixedSize(int parentWidth, int parentHeight);
+    virtual std::tuple<int, int> getFixedSize(int parentWidth, int parentHeight);
 
     /**
      * Gets if the element is selectable
@@ -117,6 +115,7 @@ class WindowElement {
     State state = DEFAULT;
     WindowElement* parent;  // Group only for now
 };
+//;;split
 
 WindowElement* WindowElement::focusedElement;
 
@@ -173,7 +172,7 @@ void WindowElement::arrowKeyEvent(ArrowKey key, WindowElement* element) {
     }
 }
 
-tuple<int, int> WindowElement::getFixedSize(int parentWidth, int parentHeight) {
+std::tuple<int, int> WindowElement::getFixedSize(int parentWidth, int parentHeight) {
     int width = this->width;
     int height = this->height;
     if (this->widthPercent != -1) {
@@ -182,7 +181,7 @@ tuple<int, int> WindowElement::getFixedSize(int parentWidth, int parentHeight) {
     if (this->heightPercent != -1) {
         height = this->heightPercent * parentHeight;
     }
-    return make_tuple(width, height);
+    return std::make_tuple(width, height);
 }
 
 void WindowElement::setValues(int x, int y, int width, int height) {

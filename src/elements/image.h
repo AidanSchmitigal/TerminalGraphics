@@ -1,7 +1,5 @@
 #include "element.h"
 
-using namespace std;
-
 /**
  * Constructs an Image object with a given path and size.
  *
@@ -16,7 +14,7 @@ class Image : public WindowElement {
      * @param path The path of the image to be constructed.
      * @param size The size of the image to be constructed.
      */
-    Image(string path, int size);
+    Image(std::string path, int size);
 
     /**
      * Constructs an Image object with a given path and size.
@@ -24,14 +22,14 @@ class Image : public WindowElement {
      * @param path The path of the image to be constructed.
      * @param size The size of the image to be constructed.
      */
-    Image(string path, int width, int height);
+    Image(std::string path, int width, int height);
 
     /**
      * Sets the image of the Image object.
      *
      * @param path The path of the image to be set.
      */
-    void setImage(string path);
+    void setImage(std::string path);
 
     /**
      * Paints the image object at the given coordinates.
@@ -44,14 +42,15 @@ class Image : public WindowElement {
     void paint(int x, int y, int width, int height) override;
 
    private:
-    string path = "";
+    std::string path = "";
 };
+//;;split
 
-Image::Image(string path, int size) : path(path), WindowElement(size, size) {}
+Image::Image(std::string path, int size) : path(path), WindowElement(size, size) {}
 
-Image::Image(string path, int width, int height) : path(path), WindowElement(width, height) {}
+Image::Image(std::string path, int width, int height) : path(path), WindowElement(width, height) {}
 
-void Image::setImage(string path) {
+void Image::setImage(std::string path) {
     this->path = path;
 }
 

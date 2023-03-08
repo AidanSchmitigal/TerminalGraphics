@@ -3,8 +3,6 @@
 
 #include "element.h"
 
-using namespace std;
-
 /**
  * Constructor for TextInput object
  * @param title the title of the text input
@@ -19,25 +17,25 @@ class TextInput : public WindowElement {
      * @param templateText the template text to be shown if input is empty
      * @param widthPercent the percentage of the screen's width the text input should take up, defaults to 0.6
      */
-    TextInput(string title, string templateText, float widthPercent = 0.6);
+    TextInput(std::string title, std::string templateText, float widthPercent = 0.6);
 
     /**
      * Sets the title of the text input
      * @param title the new title to be set
      */
-    void setTitle(string title);
+    void setTitle(std::string title);
 
     /**
      * Sets the text input's current text
      * @param text the new text to be set
      */
-    void setText(string text);
+    void setText(std::string text);
 
     /**
      * Gets the text input's current text
      * @return the text input's current text
      */
-    string getText();
+    std::string getText();
 
     /**
      * Paints the text input on the screen
@@ -65,40 +63,41 @@ class TextInput : public WindowElement {
      * Sets the exit action of the text input
      * @param exitAction the exit action to be set
      */
-    void setExitAction(function<void(string)> exitAction);
+    void setExitAction(std::function<void(std::string)> exitAction);
 
     /**
      * Sets the key action of the text input
      * @param keyAction the key action to be set
      */
-    void setKeyAction(function<void(string)> keyAction);
+    void setKeyAction(std::function<void(std::string)> keyAction);
 
    private:
-    string title;
-    string text = "";
-    string templateText;
-    function<void(string)> exitAction;
-    function<void(string)> keyAction;
+    std::string title;
+    std::string text = "";
+    std::string templateText;
+    std::function<void(std::string)> exitAction;
+    std::function<void(std::string)> keyAction;
 };
+//;;split
 
-TextInput::TextInput(string title, string templateText, float widthPercent) : title(title), templateText(templateText), WindowElement(widthPercent, 3) {
+TextInput::TextInput(std::string title, std::string templateText, float widthPercent) : title(title), templateText(templateText), WindowElement(widthPercent, 3) {
     this->selectable = true;
 }
 
-void TextInput::setTitle(string title) {
+void TextInput::setTitle(std::string title) {
     this->title = title;
 }
-void TextInput::setText(string text) {
+void TextInput::setText(std::string text) {
     this->text = text;
 }
-string TextInput::getText() {
+std::string TextInput::getText() {
     return text;
 }
-void TextInput::setExitAction(function<void(string)> exitAction) {
+void TextInput::setExitAction(std::function<void(std::string)> exitAction) {
     this->exitAction = exitAction;
 }
 
-void TextInput::setKeyAction(function<void(string)> keyAction) {
+void TextInput::setKeyAction(std::function<void(std::string)> keyAction) {
     this->keyAction = keyAction;
 }
 

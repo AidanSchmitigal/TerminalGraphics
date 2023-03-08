@@ -6,8 +6,6 @@
 #include "element.h"
 #include "spacer.h"
 
-using namespace std;
-
 /**
  * Constructor for Group
  * @param layout A pointer to the layout of the Group
@@ -24,7 +22,7 @@ class Group : public WindowElement {
      * @param layout A pointer to the layout of the Group
      * @param title The title of the Group
      */
-    Group(Layout* layout, string title);
+    Group(Layout* layout, std::string title);
     /**
      * Destructor for Group
      */
@@ -81,7 +79,7 @@ class Group : public WindowElement {
      * Sets the title of the Group
      * @param title The title of the Group
      */
-    void setTitle(string title);
+    void setTitle(std::string title);
     /**
      * Sets whether or not the border of the Group should be hidden
      * @param borderHidden A boolean representing whether or not the border should be hidden
@@ -99,16 +97,17 @@ class Group : public WindowElement {
     void setBackgroundColor(Color color);
 
    private:
-    string title;
+    std::string title;
     bool borderHidden;
     Color backgroundColor;
-    vector<WindowElement*> elements;
+    std::vector<WindowElement*> elements;
     Layout* layout;
 };
+//;;split
 
 Group::Group(Layout* layout) : title(""), layout(layout), borderHidden(true), backgroundColor(Color::WHITE), WindowElement(1.0, 1.0) {}
 
-Group::Group(Layout* layout, string title) : title(title), layout(layout), borderHidden(false), backgroundColor(Color::WHITE), WindowElement(1.0, 1.0) {}
+Group::Group(Layout* layout, std::string title) : title(title), layout(layout), borderHidden(false), backgroundColor(Color::WHITE), WindowElement(1.0, 1.0) {}
 
 Group::~Group() {
     delete this->layout;
@@ -129,7 +128,7 @@ void Group::paint(int x, int y, int width, int height) {
     }
 }
 
-void Group::setTitle(string title) {
+void Group::setTitle(std::string title) {
     this->title = title;
 }
 

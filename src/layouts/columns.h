@@ -2,8 +2,6 @@
 
 #include "layout.h"
 
-using namespace std;
-
 /**
  * Constructor for ColumnLayout object
  * @param widths an array of integers representing the width of each element in the layout
@@ -24,7 +22,7 @@ class ColumnLayout : public Layout {
      * @param height the height of the layout on the screen
      * @param elements a vector of WindowElement objects to be included in the layout
      */
-    void paint(int x, int y, int width, int height, vector<WindowElement*> elements) override;
+    void paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) override;
 
     /**
      * Selects the next WindowElement in the layout
@@ -32,7 +30,7 @@ class ColumnLayout : public Layout {
      * @param elements a vector of WindowElement objects to be included in the layout
      * @param direction the direction to select the next WindowElement in
      */
-    bool selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) override;
+    bool selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) override;
 
     /**
      * Destructor for ColumnLayout object
@@ -42,6 +40,7 @@ class ColumnLayout : public Layout {
    private:
     int* widths;
 };
+//;;split
 
 ColumnLayout::ColumnLayout(int widths[]) : widths(widths) {}
 
@@ -49,7 +48,7 @@ ColumnLayout::~ColumnLayout() {
     delete[] widths;
 }
 
-void ColumnLayout::paint(int x, int y, int width, int height, vector<WindowElement*> elements) {
+void ColumnLayout::paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) {
     int totalWidth = 0;
     for (int i = 0; i < sizeof(widths) / sizeof(int); i++) {
         totalWidth += widths[i];
@@ -58,7 +57,7 @@ void ColumnLayout::paint(int x, int y, int width, int height, vector<WindowEleme
     unsigned long numNonHidden = 0;
     for (int i = 0; i < elements.size(); i++)
         if (!elements[i]->hidden) numNonHidden++;
-    int numElements = min(numNonHidden, sizeof(widths) / sizeof(int));
+    int numElements = std::min(numNonHidden, sizeof(widths) / sizeof(int));
     int xOffset = 0;
     for (int i = 0; i < numElements; i++) {
         if (elements[i]->hidden) continue;
@@ -67,7 +66,7 @@ void ColumnLayout::paint(int x, int y, int width, int height, vector<WindowEleme
     }
 }
 
-bool ColumnLayout::selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) {
+bool ColumnLayout::selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) {
     int currentIndex = -1;
     for (int i = 0; i < elements.size(); i++) {
         if (elements[i] == selectedElement) {

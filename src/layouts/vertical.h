@@ -2,8 +2,6 @@
 
 #include "layout.h"
 
-using namespace std;
-
 /**
  * A vertical layout class for arranging WindowElements vertically.
  */
@@ -22,39 +20,40 @@ class VerticalLayout : public Layout {
      * @param height the height of the layout
      * @param elements the vector of WindowElements to paint
      */
-    void paint(int x, int y, int width, int height, vector<WindowElement*> elements) override;
+    void paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) override;
     /**
      * Selects the next WindowElement in the layout
      * @param selectedElement the currently selected WindowElement
      * @param elements a vector of WindowElement objects to be included in the layout
      * @param direction the direction to select the next WindowElement in
      */
-    bool selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) override;
+    bool selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) override;
 };
+//;;split
 
 VerticalLayout::VerticalLayout() {}
 
-void VerticalLayout::paint(int x, int y, int width, int height, vector<WindowElement*> elements) {
-    vector<tuple<int, int>> sizes;
+void VerticalLayout::paint(int x, int y, int width, int height, std::vector<WindowElement*> elements) {
+    std::vector<std::tuple<int, int>> sizes;
     int totalHeight = 0;
     for (int i = 0; i < elements.size(); i++) {
         if (elements[i]->hidden) {
-            sizes.push_back(make_tuple(0, 0));
+            sizes.push_back(std::make_tuple(0, 0));
             continue;
         }
         sizes.push_back(elements[i]->getFixedSize(width, height - totalHeight));
-        totalHeight += get<1>(sizes[i]);
+        totalHeight += std::get<1>(sizes[i]);
     }
 
     int yOffset = 0;
     for (int i = 0; i < elements.size(); i++) {
         if (elements[i]->hidden) continue;
-        elements[i]->paint(x + (width - get<0>(sizes[i])) / 2, y + (height - totalHeight) / 2 + yOffset, get<0>(sizes[i]), get<1>(sizes[i]));
-        yOffset += get<1>(sizes[i]);
+        elements[i]->paint(x + (width - std::get<0>(sizes[i])) / 2, y + (height - totalHeight) / 2 + yOffset, std::get<0>(sizes[i]), std::get<1>(sizes[i]));
+        yOffset += std::get<1>(sizes[i]);
     }
 }
 
-bool VerticalLayout::selectNext(WindowElement* selectedElement, vector<WindowElement*> elements, ArrowKey direction) {
+bool VerticalLayout::selectNext(WindowElement* selectedElement, std::vector<WindowElement*> elements, ArrowKey direction) {
     int currentIndex = -1;
     for (int i = 0; i < elements.size(); i++) {
         if (elements[i] == selectedElement) {
